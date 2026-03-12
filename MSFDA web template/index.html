@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSFDA – Maharashtra State Faculty Development Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #FF6B1A;
+    --deep-blue: #0B2E6E;
+    --teal: #00897B;
+    --gold: #FFB300;
+    --light-bg: #F5F7FF;
+    --white: #ffffff;
+    --soft-gray: #f0f2f8;
+    --text-dark: #1a1a2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--deep-blue);
+    color: #cdd9f5;
+    font-size: 0.78rem;
+    padding: 6px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar a { color: var(--gold); text-decoration: none; font-weight: 700; }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--white);
+    box-shadow: 0 4px 20px rgba(11,46,110,0.12);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 74px;
+  }
+
+  .logo-wrap img {
+    height: 54px;
+    object-fit: contain;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links > li {
+    position: relative;
+  }
+
+  .nav-links > li > a {
+    display: block;
+    padding: 0 16px;
+    line-height: 74px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--deep-blue);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links > li > a:hover,
+  .nav-links > li:hover > a {
+    color: var(--white);
+    background: var(--saffron);
+  }
+
+  /* Dropdown */
+  .nav-links .dropdown {
+    display: none;
+    position: absolute;
+    top: 74px;
+    left: 0;
+    min-width: 240px;
+    background: var(--deep-blue);
+    border-top: 3px solid var(--saffron);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    z-index: 999;
+  }
+
+  .nav-links > li:hover .dropdown { display: block; }
+
+  .dropdown li a {
+    display: block;
+    padding: 10px 20px;
+    color: #cdd9f5;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .dropdown li a:hover { background: var(--saffron); color: var(--white); }
+
+  .btn-login {
+    background: var(--saffron);
+    color: var(--white) !important;
+    border-radius: 30px;
+    padding: 8px 22px !important;
+    line-height: normal !important;
+    font-size: 0.85rem !important;
+    height: auto;
+  }
+  .btn-login:hover { background: var(--deep-blue) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #1a3a8a 40%, #0e5470 100%);
+    color: var(--white);
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,107,26,0.25) 0%, transparent 70%);
+    top: -120px; right: -100px;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,137,123,0.2) 0%, transparent 70%);
+    bottom: -100px; left: 10%;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    padding: 0 80px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--saffron);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.18;
+    margin-bottom: 22px;
+    animation: fadeInUp 0.8s 0.2s ease both;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.85);
+    max-width: 560px;
+    margin-bottom: 36px;
+    animation: fadeInUp 0.8s 0.4s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s 0.6s ease both;
+  }
+
+  .btn-primary {
+    background: var(--saffron);
+    color: var(--white);
+    padding: 14px 34px;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(255,107,26,0.45);
+  }
+
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(255,107,26,0.5); }
+
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.6);
+    color: var(--white);
+    padding: 13px 34px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+
+  /* Announcement ticker */
+  .ticker {
+    background: var(--gold);
+    color: var(--deep-blue);
+    padding: 10px 0;
+    overflow: hidden;
+  }
+
+  .ticker-inner {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 22s linear infinite;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+
+  .ticker-inner span { padding: 0 50px; }
+
+  @keyframes ticker {
+    from { transform: translateX(100vw); }
+    to { transform: translateX(-100%); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STATS ── */
+  .stats {
+    background: var(--deep-blue);
+    padding: 52px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .stat-card {
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    padding: 20px;
+  }
+  .stat-card:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    color: #cdd9f5;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 90px 80px; }
+
+  .section-label {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+   
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 900;
+    color: var(--deep-blue);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--light-bg); }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .about-img {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 20px 20px 0 var(--saffron);
+  }
+
+  .about-img img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-text p {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 30px;
+  }
+
+  /* ── PROGRAMS ── */
+  .programs { background: var(--white); }
+
+  .programs-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+@media (max-width:768px){
+.programs-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media (max-width:480px){
+.programs-grid{
+grid-template-columns:1fr;
+}
+}
+  .prog-card {
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 4px 20px rgba(11,46,110,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .prog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(11,46,110,0.18);
+  }
+
+ .prog-card img{
+width:100%;
+height:200px;
+object-fit:cover;
+display:block;
+}
+
+  .prog-card-body {
+    padding: 16px 18px 20px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .prog-card:nth-child(4n+1) .prog-card-body { border-color: var(--saffron); }
+  .prog-card:nth-child(4n+2) .prog-card-body { border-color: var(--teal); }
+  .prog-card:nth-child(4n+3) .prog-card-body { border-color: var(--gold); }
+  .prog-card:nth-child(4n+0) .prog-card-body { border-color: var(--deep-blue); }
+
+  .prog-card h4 {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--deep-blue);
+    margin-bottom: 5px;
+  }
+
+  .prog-card p {
+    font-size: 0.78rem;
+    color: #777;
+    font-weight: 600;
+  }
+
+  .programs-more {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  /* ── VISION ── */
+  .vision {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, #0e5470 100%);
+    color: var(--white);
+  }
+
+  .vision .section-title { color: var(--white); }
+
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 50px;
+  }
+
+  .vision-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: background 0.3s;
+    backdrop-filter: blur(8px);
+  }
+
+  .vision-card:hover { background: rgba(255,255,255,0.14); }
+
+  .vision-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+  }
+
+  .v1 { background: rgba(255,107,26,0.25); }
+  .v2 { background: rgba(255,179,0,0.25); }
+  .v3 { background: rgba(0,137,123,0.25); }
+  .v4 { background: rgba(255,107,26,0.25); }
+  .v5 { background: rgba(255,179,0,0.25); }
+  .v6 { background: rgba(0,137,123,0.25); }
+
+  .vision-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .vision-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.82);
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--soft-gray); overflow: hidden; }
+
+  .testi-scroll {
+    display: flex;
+    gap: 24px;
+    margin-top: 44px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .testi-scroll::-webkit-scrollbar { height: 4px; }
+  .testi-scroll::-webkit-scrollbar-thumb { background: var(--saffron); border-radius: 4px; }
+
+  .testi-card {
+    min-width: 320px;
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    border-left: 5px solid var(--saffron);
+    transition: transform 0.3s;
+  }
+
+  .testi-card:nth-child(even) { border-left-color: var(--teal); }
+  .testi-card:nth-child(3n) { border-left-color: var(--gold); }
+
+  .testi-card:hover { transform: translateY(-5px); }
+
+  .testi-quote {
+    font-size: 2.5rem;
+    color: var(--saffron);
+    line-height: 1;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .testi-card p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: #555;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+
+  .testi-name {
+    font-weight: 800;
+    color: var(--deep-blue);
+    font-size: 0.88rem;
+  }
+
+  .testi-inst {
+    font-size: 0.78rem;
+    color: #888;
+    font-weight: 600;
+  }
+
+  /* ── CENTERS ── */
+  .centers { background: var(--white); }
+
+  .centers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+    margin-top: 44px;
+  }
+
+  .center-card {
+    border-radius: 16px;
+    padding: 34px 28px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .center-card:hover { transform: translateY(-6px); }
+
+  .center-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.18);
+    transition: background 0.3s;
+  }
+
+  .center-card:hover::before { background: rgba(0,0,0,0.08); }
+
+  .cc1 { background: linear-gradient(135deg, #FF6B1A, #FF9A3D); }
+  .cc2 { background: linear-gradient(135deg, #0B2E6E, #1a5276); }
+  .cc3 { background: linear-gradient(135deg, #00897B, #26a69a); }
+  .cc4 { background: linear-gradient(135deg, #7B1FA2, #ab47bc); }
+  .cc5 { background: linear-gradient(135deg, #D32F2F, #ef5350); }
+  .cc6 { background: linear-gradient(135deg, #F9A825, #FFB300); }
+
+  .center-card .c-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .center-card h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+    line-height: 1.3;
+  }
+
+  /* ── NEWS ── */
+  .news { background: var(--light-bg); }
+
+  .news-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  .news-item {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 18px rgba(11,46,110,0.08);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+    border-left: 4px solid var(--saffron);
+  }
+
+  .news-item:hover { transform: translateX(6px); }
+
+  .news-item:nth-child(2) { border-left-color: var(--teal); }
+
+  .news-icon {
+    width: 54px; height: 54px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--saffron), var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    color: var(--white);
+  }
+
+  .news-item:nth-child(2) .news-icon {
+    background: linear-gradient(135deg, var(--teal), #00bfa5);
+  }
+
+  .news-item h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--deep-blue);
+    margin-bottom: 4px;
+  }
+
+  .news-item p { font-size: 0.82rem; color: #888; font-weight: 600; }
+
+  /* ── PARTNERSHIPS ── */
+  .partnerships { background: var(--white); }
+
+  .partner-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 44px;
+  }
+
+  .partner-card {
+    background: var(--soft-gray);
+    border-radius: 14px;
+    padding: 28px 30px;
+    border-top: 4px solid var(--teal);
+  }
+
+  .partner-card:nth-child(2) { border-top-color: var(--saffron); }
+  .partner-card:nth-child(3) { border-top-color: var(--gold); }
+  .partner-card:nth-child(4) { border-top-color: var(--deep-blue); }
+
+  .partner-card h4 { font-weight: 800; color: var(--deep-blue); margin-bottom: 8px; font-size: 0.95rem; }
+  .partner-card p { font-size: 0.85rem; color: #666; line-height: 1.7; }
+  .partner-name { font-size: 0.82rem; color: var(--teal); font-weight: 800; margin-top: 12px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep-blue);
+    color: #cdd9f5;
+    padding: 60px 80px 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 50px;
+  }
+
+  .footer-brand img { height: 50px; margin-bottom: 22px; filter: brightness(0) invert(1); }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: #aab5d0;
+    max-width: 320px;
+  }
+
+  footer h4 {
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  footer h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--saffron);
+    border-radius: 2px;
+  }
+
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 10px; }
+  footer ul li a {
+    color: #aab5d0;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  footer ul li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #7a8fb0;
+  }
+
+  .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+  /* ── GYANSETU Banner ── */
+  .gyansetu-banner {
+    background: linear-gradient(90deg, var(--gold), #ffcc44);
+    color: var(--deep-blue);
+    padding: 16px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 800;
+    font-size: 0.95rem;
+  }
+
+  .gyansetu-banner a {
+    background: var(--deep-blue);
+    color: var(--gold);
+    padding: 10px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 800;
+    transition: transform 0.2s;
+  }
+
+  .gyansetu-banner a:hover { transform: scale(1.05); }
+
+  /* ── More programs button ── */
+  .btn-teal {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    padding: 13px 34px;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 18px rgba(0,137,123,0.35);
+  }
+
+  .btn-teal:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,137,123,0.5); }
+
+  /* ── Responsive ── */
+  @media(max-width: 1100px) {
+    .programs-grid { grid-template-columns: repeat(3, 1fr); }
+    .vision-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media(max-width: 900px) {
+    nav, section, footer, .stats, .gyansetu-banner, .topbar { padding-left: 24px; padding-right: 24px; }
+    .about-inner, .news-inner, .footer-grid { grid-template-columns: 1fr; }
+    .programs-grid, .centers-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-content { padding: 40px 24px; }
+  }
+
+  @media(max-width: 600px) {
+    .programs-grid, .centers-grid, .partner-cards { grid-template-columns: 1fr; }
+    .vision-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  .cm-banner{
+width:100%;
+text-align:center;
+background:#f8fafc;
+padding:10px 0;
+}
+
+.cm-banner img{
+max-width:100%;
+height:auto;
+}
+</style>
+</head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+font-family: 'Poppins', sans-serif;
+}
+</style>
+
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>📍 412-B, Bhamburda, Model Colony, Shivajinagar, Pune, Maharashtra 411016</span>
+  <span>Govt. of Maharashtra Initiative &nbsp;|&nbsp; <a href="https://apps.msfda.ac.in/Home/Login">Faculty Login</a></span>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo-wrap">
+    <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Msfda-Logo-Dark_1.png" alt="MSFDA Logo">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li>
+      <a href="#">About Us ▾</a>
+      <ul class="dropdown">
+        <li><a href="#">MSFDA Overview</a></li>
+        <li><a href="#">Board of Directors</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Facility</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Partnerships</a></li>
+        <li><a href="#">Press Coverage</a></li>
+        <li><a href="#">Government Resolution</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Centers ▾</a>
+      <ul class="dropdown">
+        <li><a href="#">Multidisciplinary Curriculum & Pedagogy</a></li>
+        <li><a href="#">Innovation & Cutting-edge Technology</a></li>
+        <li><a href="#">Inclusion & Diversity</a></li>
+        <li><a href="#">Leadership Development</a></li>
+        <li><a href="#">Evaluation & Assessment</a></li>
+        <li><a href="#">Resources</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Program Calendar ▾</a>
+      <ul class="dropdown">
+        <li><a href="#">Monthly Calendar</a></li>
+        <li><a href="#">Annual Calendar</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Resources ▾</a>
+      <ul class="dropdown">
+        <li><a href="#">MSFDA Brochure</a></li>
+        <li><a href="#">MSFDA Warta</a></li>
+        <li><a href="#">Gallery</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="https://apps.msfda.ac.in/Home/Login" class="btn-login">Log In</a></li>
+  </ul>
+</nav>
+
+<!-- CM BANNER -->
+<div class="cm-banner">
+  <img src="C:\Users\yadnesh.dixit\Downloads\MSFDA web template\Shri. Devendra Fadnavis Hon'ble Chief Minister.png" alt="Hon'ble Chief Minister Devendra Fadnavis">
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>🎓 GYANSETU 2026 – Annual Training Calendar Now Available &nbsp;|&nbsp; 📅 Register for Upcoming Faculty Development Programs &nbsp;|&nbsp; 🏛️ A unique initiative by the Government of Maharashtra for quality higher education &nbsp;|&nbsp; 📢 Tender Notifications Open – Visit the Resources section</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="relative overflow-hidden py-20 lg:py-28 text-white bg-gradient-to-br from-indigo-900 via-blue-800 to-cyan-700">
+
+<!-- decorative gradient blobs -->
+
+<div class="absolute top-0 left-0 w-96 h-96 bg-purple-500 opacity-30 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400 opacity-30 rounded-full blur-3xl"></div>
+
+<div class="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+
+<!-- TEXT CONTENT -->
+
+<div>
+
+<span class="inline-block bg-white/20 backdrop-blur-md text-white text-sm font-medium px-4 py-2 rounded-full mb-6 border border-white/30">
+🏛️ Government of Maharashtra Initiative
+</span>
+
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+Transforming 
+<span class="bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+Higher Education
+</span>
+Through Faculty Excellence
+</h1>
+
+<p class="text-lg text-blue-100 mb-8 leading-relaxed">
+Maharashtra State Faculty Development Academy empowers teachers and stakeholders from universities and colleges through innovative capacity building programs, nurturing safe and vibrant educational spaces.
+</p>
+
+<div class="flex flex-col sm:flex-row gap-4">
+
+<a href="#programs"
+class="px-6 py-3 rounded-lg font-semibold shadow-lg bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:scale-105 transition">
+Explore Programs
+</a>
+
+<a href="#about"
+class="px-6 py-3 rounded-lg font-semibold border border-white/50 hover:bg-white hover:text-blue-900 transition">
+About MSFDA
+</a>
+
+</div>
+
+</div>
+
+<!-- IMAGE SECTION -->
+
+<div class="hidden lg:block relative">
+
+<div class="absolute inset-0 bg-gradient-to-tr from-indigo-600 to-cyan-500 opacity-20 rounded-2xl blur-xl"></div>
+
+<div class="relative rounded-2xl shadow-2xl overflow-hidden">
+  <video 
+    class="w-full h-[400px] object-cover rounded-2xl"
+    autoplay 
+    muted 
+    loop 
+    playsinline>
+    
+    <source src="C:\Users\yadnesh.dixit\Downloads\MSFDA web template\videoplayback (28).mp4" type="video/mp4">
+    
+  </video>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-card">
+    <span class="stat-num">16,137</span>
+    <span class="stat-label">Participants</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">1,872</span>
+    <span class="stat-label">Colleges</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">58</span>
+    <span class="stat-label">Programs</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">36</span>
+    <span class="stat-label">Collaborators</span>
+  </div>
+</div>
+
+<!-- GYANSETU BANNER -->
+<div class="gyansetu-banner">
+  <span>📘 GYANSETU 2026 – Annual Training Calendar is now available for download!</span>
+  <a href="https://msfda.ac.in/wp-content/uploads/2026/01/Gyansetu-2026.pdf" target="_blank">Download PDF</a>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img">
+      <img src="https://msfda.ac.in/wp-content/uploads/2025/04/DSC02812-scaled.jpg" alt="MSFDA Campus Program" onerror="this.style.background='linear-gradient(135deg,#0B2E6E,#00897B)';this.style.height='420px'">
+    </div>
+    <div class="about-text">
+      <span class="section-label">● About MSFDA</span>
+      <h2 class="section-title">A Unique Initiative for Quality Higher Education</h2>
+      <p>A unique initiative of the Government of Maharashtra towards ensuring quality higher education to develop good, thoughtful, well-rounded, creative individuals and nurturing colleges as safe and vibrant spaces through capacity building programs for teachers and other stakeholders from universities and colleges.</p>
+      <a href="#" class="btn-primary">Read More</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <span class="section-label">● Our Programs</span>
+  <h2 class="section-title">Programs</h2>
+
+  <div class="programs-grid">
+
+    <a href="#" class="prog-card">
+      <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Pragya-Parisar-Prakalp.jpg" alt="Pradnya Parisar Prakalp">
+      <div class="prog-card-body">
+        <h4>Pradnya Parisar Prakalp</h4>
+        <p>Emotional Friendly Campus</p>
+      </div>
+    </a>
+
+    <a href="#" class="prog-card">
+      <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Yuva-Manasrang.jpg" alt="Yuva Manasrang">
+      <div class="prog-card-body">
+        <h4>Yuva Manasrang</h4>
+        <p>Mental Well-Being on Campus</p>
+      </div>
+    </a>
+
+    <a href="#" class="prog-card">
+      <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Gender-Sensitization.jpg" alt="Gender Sensitization">
+      <div class="prog-card-body">
+        <h4>Gender Sensitization</h4>
+        <p>Gender Safe Campus</p>
+      </div>
+    </a>
+
+    <a href="#" class="prog-card">
+      <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Ethics-and-Values-for-Stakeholders-in-HEIs.jpg" alt="Ethics and Values">
+      <div class="prog-card-body">
+        <h4>Ethics and Values for Stakeholders in HEIs</h4>
+        <p>Enabling Ethical Leadership</p>
+      </div>
+    </a>
+
+    <a href="#" class="prog-card">
+      <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Tribal-Pride-Journey.jpg" alt="Tribal Pride Journey">
+      <div class="prog-card-body">
+        <h4>Tribal Pride Journey</h4>
+        <p>Immersive Programme for Leaders</p>
+      </div>
+    </a>
+
+    <a href="#" class="prog-card">
+      <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Science-Astronomy-and-Society.jpg" alt="Science, Astronomy and Society">
+      <div class="prog-card-body">
+        <h4>Science, Astronomy and Society</h4>
+        <p>Interconnectedness of Astronomy and Society</p>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="programs-more">
+    <a href="#" class="btn-teal">More Programs</a>
+  </div>
+</section>
+<!-- CENTERS -->
+<section class="centers">
+  <span class="section-label">● Our Centers</span>
+  <h2 class="section-title">Centers of Excellence</h2>
+  <div class="centers-grid">
+    <a href="#" class="center-card cc1">
+      <span class="c-icon">📚</span>
+      <h3>Multidisciplinary Curriculum & Pedagogy</h3>
+    </a>
+    <a href="#" class="center-card cc2">
+      <span class="c-icon">💡</span>
+      <h3>Innovation & Cutting-edge Technology</h3>
+    </a>
+    <a href="#" class="center-card cc3">
+      <span class="c-icon">🌈</span>
+      <h3>Inclusion & Diversity</h3>
+    </a>
+    <a href="#" class="center-card cc4">
+      <span class="c-icon">🏆</span>
+      <h3>Leadership Development</h3>
+    </a>
+    <a href="#" class="center-card cc5">
+      <span class="c-icon">📊</span>
+      <h3>Evaluation & Assessment</h3>
+    </a>
+    <a href="#" class="center-card cc6">
+      <span class="c-icon">📂</span>
+      <h3>Resources</h3>
+    </a>
+  </div>
+</section>
+
+<!-- VISION & VALUES -->
+<section class="vision">
+  <span class="section-label" style="color: #FFB300; -webkit-text-fill-color: #FFB300;">● Vision & Values</span>
+  <h2 class="section-title">Vision & Values</h2>
+  <div class="vision-grid">
+    <div class="vision-card">
+      <div class="vision-icon v1">🎯</div>
+      <h3>AIM</h3>
+      <p>"Quality higher education to develop good thoughtful, well-rounded and creative individuals"</p>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon v2">🔭</div>
+      <h3>VISION</h3>
+      <p>"Transforming higher educational landscape, through continuous professional development of teachers in HEIs of Maharashtra"</p>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon v3">🧠</div>
+      <h3>Learning Beyond Knowledge</h3>
+      <p>Promote critical thinking, co-learning, congenial learning environment, free from fear and competition.</p>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon v4">🔬</div>
+      <h3>Scientific & Rational Thinking</h3>
+      <p>Develop scientific temper, humanism, spirit of enquiry and reform.</p>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon v5">🌍</div>
+      <h3>Diversity & Inclusion</h3>
+      <p>Promote diversity and inclusion as a non-negotiable fundamental principle in all aspects of higher education.</p>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon v6">🌱</div>
+      <h3>Experiential Learning & Innovation</h3>
+      <p>Adopt pedagogies that promote discovery, questioning and experiential learning by students.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <span class="section-label">● Testimonials</span>
+  <h2 class="section-title">What Participants Say</h2>
+  <div class="testi-scroll">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>We were given an activity to click 5 photos of the place and use them to explain a concept from our subject. It struck me that concepts from commerce, such as assets and investment can be taught through photos of the natural environment.</p>
+      <div class="testi-name">Rashmi Hirlekar</div>
+      <div class="testi-inst">Program: Through The Lens</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>Takeaway of my training is to bring interdisciplinary approach to each cyber security awareness in cyber psychology.</p>
+      <div class="testi-name">Prof. Dr. Alpana Vaidya</div>
+      <div class="testi-inst">Symbiosis, Pune · Cyber Security Intervention & Investigation</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>On coming to this program, I realised that art may have limitations, but ideas go beyond limits.</p>
+      <div class="testi-name">Aparna Wagh</div>
+      <div class="testi-inst">New Arts, Commerce & Science College · Performing Art as Pedagogy</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>As a teacher, we learned about a new pedagogy and learning theory. It has given us the confidence to successfully implement constructivism.</p>
+      <div class="testi-name">Ashok Kadam</div>
+      <div class="testi-inst">Shri Shivaji Mahavidylaya · Innovation & Cutting-edge Technology</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>On coming to this programme, the first thing I realised is the responsibility of the teacher to connect with students, develop their abilities, and address their problems.</p>
+      <div class="testi-name">Minakshi Bhandakkar</div>
+      <div class="testi-inst">Late Madangopal Mundhada College · Creating Constructive Classroom</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>After going back, I will definitely be able to give not only interdisciplinary, but also multidisciplinary exposure to my students.</p>
+      <div class="testi-name">Mrunal Jogi</div>
+      <div class="testi-inst">PSCVPM's Arts, Science & Commerce College · Ethics & Values in HEIs</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>This programme exposed us to different leadership styles. Also, gained understanding of various dimensions in gender along with multidisciplinary approach.</p>
+      <div class="testi-name">Capt. Nitin Sonjhe</div>
+      <div class="testi-inst">Government Polytechnic, Miraj · Leadership through Outdoor Activities</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>In this workshop, we learnt teaching techniques that make learning comfortable for students.</p>
+      <div class="testi-name">Pratiksha Borase</div>
+      <div class="testi-inst">SDSM College · Manasrang Emotional & Mental Well-Being</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <p>We have very clearly understood the teaching-learning process through many diverse activities conducted here.</p>
+      <div class="testi-name">Vaijantimala Jadhav</div>
+      <div class="testi-inst">Modern College of Arts, Science & Commerce · Value of Art in Human Life</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS & EVENTS -->
+<section class="news">
+  <span class="section-label">● News & Events</span>
+  <h2 class="section-title">News & Events</h2>
+  <div class="news-inner">
+    <a href="#" class="news-item">
+      <div class="news-icon">📋</div>
+      <div>
+        <h4>Tender Notifications</h4>
+        <p>View the latest procurement and tender notifications from MSFDA</p>
+      </div>
+    </a>
+    <a href="#" class="news-item">
+      <div class="news-icon">📅</div>
+      <div>
+        <h4>All Upcoming Events</h4>
+        <p>Browse all upcoming faculty development programs and training events</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PARTNERSHIPS -->
+<section class="partnerships">
+  <span class="section-label">● Our Partners</span>
+  <h2 class="section-title">Partnerships</h2>
+  <div class="partner-cards">
+    <div class="partner-card">
+      <h4>ACE-IUCAA</h4>
+      <p>A unique programme that introduces participants to the close connection of Science, Astronomy and Society through activities like star gazing, bird watching, and more.</p>
+      <div class="partner-name">— Saikia Dhruba</div>
+    </div>
+    <div class="partner-card">
+      <h4>TISS Mumbai</h4>
+      <p>TISS Mumbai designs programmes focused on a learning-based approach to assessment and evaluation, enabling teachers to build perspectives and develop skills related to formative assessment.</p>
+      <div class="partner-name">— Anusha, TISS Mumbai</div>
+    </div>
+    <div class="partner-card">
+      <h4>Institute for Psychological Health (IPH – Thane)</h4>
+      <p>IPH initiated Pradnya Parisar Prakalp – emotionally friendly campuses programme – in selected colleges by way of building their capacity over a period of three-years.</p>
+      <div class="partner-name">— Anand Nadkarni, Consultant Psychiatrist & Managing Trustee</div>
+    </div>
+    <div class="partner-card">
+      <h4>riidl</h4>
+      <p>riidl conducts programmes for teachers in order to facilitate entrepreneurship and setting up of Startup Incubation Centres in colleges and universities.</p>
+      <div class="partner-name">— Gaurang</div>
+    </div>
+  </div>
+  <div class="programs-more" style="margin-top: 36px;">
+    <a href="#" class="btn-primary">View More Partners</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="https://msfda.ac.in/wp-content/uploads/2023/07/Msfda-Logo-Light_1.png" alt="MSFDA Logo Light">
+      <p>Maharashtra State Faculty Development Academy (MSFDA)<br>
+      412-B, Bhamburda, Bahirat Patil Chowk, Model Colony, Shivajinagar, Pune, Maharashtra 411016</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Upcoming Programs</a></li>
+        <li><a href="#">Work With Us</a></li>
+        <li><a href="#">Tender Notifications</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Get In Touch</a></li>
+        <li><a href="#">Accessibility Statement</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">MSFDA Overview</a></li>
+        <li><a href="#">Board of Directors</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Facility</a></li>
+        <li><a href="#">Government Resolution</a></li>
+        <li><a href="#">Press Coverage</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 MSFDA &nbsp;|&nbsp; <a href="#">Privacy</a> &nbsp;|&nbsp; <a href="#">Disclaimer</a></span>
+    <span>Powered by <a href="https://www.sppuedutech.in/" target="_blank">SPPU EduTech</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
